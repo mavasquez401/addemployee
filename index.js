@@ -21,29 +21,31 @@
 //     console.log('Connected to MySQL Server!');
 // });
 
-let fname = document.getElementById('fname').value
-let lname = document.getElementById('lname').value
-let dept = document.getElementById('dept').value
-let salary = document.getElementById('salary').value
-let jobTitle = document.getElementById('jobTitle').value
-let hireDate = document.getElementById('hireDate').value
-let endDate = document.getElementById('endDate').value
+// let salary = document.getElementById('salary').value
+// let jobTitle = document.getElementById('jobTitle').value
+// let hireDate = document.getElementById('hireDate').value
+// let endDate = document.getElementById('endDate').value
+// fname = 'gamby'
 
 
-const employee = {
-  FirstName: fname,
-  LastName: lname,
-  Department: dept,
-  JobTitle: jobTitle,
-  StartDate: hireDate,
-  EndDate: endDate,
-  Salary: salary
-};
 
-
-const storeData = (employee,e) => {
-    e.preventdefault()
+storeData = () => {
+  let fname = document.getElementById('fname').value
+  let lname = document.getElementById('lname').value
+  let dept = document.getElementById('dept').value
+  event.preventdefault()
+  const employee = {
+    FirstName: fname,
+    LastName: lname,
+    Department: dept,
+    // JobTitle: jobTitle,
+    // StartDate: hireDate,
+    // EndDate: endDate,
+    // Salary: salary
+  };
+  if (employee) {
     console.log(employee)
+  }
 }
 
 // app.get('/', function (req, res) {
