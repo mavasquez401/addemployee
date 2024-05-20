@@ -3,40 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Data Storing</title>
 </head>
+<h1>Lets store a new employee</h1>
+
+<p>Status:</p>
+<p id="status">Not Saved</p>
 <body>
-    <form onSubmit="storeData()">
-        <label for="">First Name</label>
-        <input type="text" id="fname">
+    <form id="employeeForm" onsubmit="storeData(event)">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname">
         <br>
 
-        <label for="">Last Name</label>
-        <input type="text" id="lname">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname">
         <br>
 
-        <label for="">Department</label>
-        <input type="text" id="dept">
+        <label for="dept">Department</label>
+        <input type="text" id="dept" name="dept">
         <br>
 
-        <!-- <label for="">Salary</label>
-        <input type="text" id="salary">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" name="salary">
         <br>
 
-        <label for="">Job Title</label>
-        <input type="text" id="jobTitle">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" name="jobTitle">
         <br>
 
-        <label for="">Hire Date</label>
-        <input type="date" id="hireDate">
+        <label for="hireDate">Hire Date</label>
+        <input type="date" id="hireDate" name="hireDate">
         <br>
 
-        <label for="">End Date</label>
-        <input type="date" id="endDate">
-        <br> -->
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" name="endDate">
+        <br>
 
-        <input type="button" value="Add User">
+        <input type="submit" value="Add User">
     </form>
 </body>
 <script src="index.js"></script>
+<script>
+    document.getElementById('employeeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+  
+        let formData = new FormData(this);
+  
+        fetch('http://localhost:3000/addemployee', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('status').innerHTML = `<p style="color:green">${data}</p>`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('status').innerHTML = `<p style="color:red">Failed to save employee</p>`;
+        });
+    });
+  </script>
 </html>
