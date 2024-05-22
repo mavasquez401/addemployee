@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Storing</title>
+    <link rel="stylesheet" href="index.css">
 </head>
-<h1>Lets store a new employee</h1>
-<H2>Login Here</H2>
-<p id="loginStatus" style="color:red">Not Logged In</p>
-    <form id="loginForm">
+<form id="loginForm">
+        <h1>Lets store a new employee</h1>
+        <H2>Login Here</H2>
+        <p id="loginStatus" style="color:red">Not Logged In</p>
         <label for="loginUsername">Username:</label>
         <input type="text" id="loginUsername" name="username">
         <br>
@@ -20,11 +21,11 @@
         <input type="submit" value="Login">
     </form> 
 
-<h2>Create New User</h2>
-<p>Status:</p>
-<p id="status">Not Saved</p>
-<body>
     <form id="employeeForm" onsubmit="storeData(event)">
+        <h2>Create New User</h2>
+        <p>Status:</p>
+        <p id="status">Not Saved</p>
+        <body>
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="fname">
         <br>
