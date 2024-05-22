@@ -85,14 +85,20 @@
     });
 
     document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        let formData = new FormData(this);
-        fetch('http://localhost:3000/login', {
+        event.preventDefault()
+
+        let formData = new FormData(this)
+        console.log('Login form data:', Array.from(formData.entries()))
+
+        fetch('/login', {
             method: 'POST',
             body: new URLSearchParams(formData)
         })
+
         .then(response => response.json())
         .then(data => {
+            console.log('Login response data:', data)
+
         if (data.success) {
                 document.getElementById('loginStatus').innerHTML = `<p style="color:green">Logged In</p>`
             } else {

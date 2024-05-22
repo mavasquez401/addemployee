@@ -88,12 +88,19 @@ app.post('/addemployee', (req, res) => {
       
   app.post('/login',(req, res) => {
     const { Username, Password } = req.body
+    console.log(`Login attempt with username: ${username} and password: ${password}`); // Debugging log
+
     connection.query('SELECT * FROM employees WHERE Username = ? AND Password = ?', [Username, Password], (err, results) =>{
-      if (err) throw err
+      if (err) {
+        console.error('Error during login query:', err);
+        return res.status(500).json({ success: false, message: 'Database error' });
+      }
+      console.log('Login query results:', results);
+
       if (results.length > 0) {
         res.json({ success: true})
       } else {
-        res.json({ success: false})
+        res.json({ success: false,  message: 'Invalid username or password' })
       }
     })
   })
